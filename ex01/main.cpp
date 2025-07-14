@@ -24,22 +24,47 @@ int main()
 
             std::cout << "First Name : ";
             std::getline(std::cin, input);
+            if (input.empty())
+            {
+                std::cout << "First Name is empty, recommencez l'ajout du contact." << std::endl;
+                continue;
+            }
             contact.setFirstName(input);
 
             std::cout << "Last Name : ";
             std::getline(std::cin, input);
+            if (input.empty())
+            {
+                std::cout << "Last Name is empty, recommencez l'ajout du contact." << std::endl;
+                continue;
+            }
             contact.setLastName(input);
 
             std::cout << "Nick Name : ";
-            std::getline(std::cin, input);
+            std::getline(std::cin, input);  
+            if (input.empty())
+            {
+                std::cout << "Nick Name is empty, recommencez l'ajout du contact." << std::endl;
+                continue;
+            }
             contact.setNickName(input);
 
             std::cout << "Phone Number : ";
-            std::getline(std::cin, input);
+            std::getline(std::cin, input);  
+            if (input.empty())
+            {
+                std::cout << "Phone Number is empty, recommencez l'ajout du contact." << std::endl;
+                continue;
+            }
             contact.setNumber(input);
 
             std::cout << "Darkest Secret : ";
             std::getline(std::cin, input);
+            if (input.empty())
+            {
+                std::cout << "Darkest Secret is empty, recommencez l'ajout du contact." << std::endl;
+                continue;
+            }
             contact.setDarkestSecret(input);
 
             // N'oublie pas d'ajouter le contact au phonebook !
