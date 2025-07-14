@@ -13,26 +13,37 @@ int main()
         std::cout << "3. EXIT" << std::endl;
 
         std::string command;
-        std::cin >> command;
-
+        if (!std::getline(std::cin, command)) {
+            std::cout << "Fin de saisie détectée (Ctrl+D). Fermeture du programme." << std::endl;
+            break;
+        }
+        //--------------------------------------------------------------------------------------------------------//
         if(command == "ADD")
         {
             std::string input;
             Contact contact;
 
-            std::cin.ignore(); // ignoré les /n
-
             std::cout << "First Name : ";
-            std::getline(std::cin, input);
-            if (input.empty())
+            if (!std::getline(std::cin, input)) 
+            {
+                std::cout << "Error: Failed to read input" << std::endl;
+                exit(0);
+            }
+            if (input.empty()) 
             {
                 std::cout << "First Name is empty, recommencez l'ajout du contact." << std::endl;
                 continue;
             }
             contact.setFirstName(input);
 
+            //--------------------------------------------------------------------------------------------------------//
+
             std::cout << "Last Name : ";
-            std::getline(std::cin, input);
+            if(!std::getline(std::cin, input))
+            {
+                std::cout << "Error: Failed to read input";
+                exit(0);
+            }
             if (input.empty())
             {
                 std::cout << "Last Name is empty, recommencez l'ajout du contact." << std::endl;
@@ -40,8 +51,14 @@ int main()
             }
             contact.setLastName(input);
 
+            //--------------------------------------------------------------------------------------------------------//
+
             std::cout << "Nick Name : ";
-            std::getline(std::cin, input);  
+            if(!std::getline(std::cin, input))
+            {
+                std::cout << "Error: Failed to read input";
+                exit(0);
+            }
             if (input.empty())
             {
                 std::cout << "Nick Name is empty, recommencez l'ajout du contact." << std::endl;
@@ -49,8 +66,14 @@ int main()
             }
             contact.setNickName(input);
 
+            //--------------------------------------------------------------------------------------------------------//
+
             std::cout << "Phone Number : ";
-            std::getline(std::cin, input);  
+            if(!std::getline(std::cin, input))
+            {
+                std::cout << "Error: Failed to read input";
+                exit(0);
+            }
             if (input.empty())
             {
                 std::cout << "Phone Number is empty, recommencez l'ajout du contact." << std::endl;
@@ -58,8 +81,14 @@ int main()
             }
             contact.setNumber(input);
 
+            //--------------------------------------------------------------------------------------------------------//
+
             std::cout << "Darkest Secret : ";
-            std::getline(std::cin, input);
+            if(!std::getline(std::cin, input))
+            {
+                std::cout << "Error: Failed to read input";
+                exit(0);
+            }
             if (input.empty())
             {
                 std::cout << "Darkest Secret is empty, recommencez l'ajout du contact." << std::endl;
@@ -67,17 +96,20 @@ int main()
             }
             contact.setDarkestSecret(input);
 
-            // N'oublie pas d'ajouter le contact au phonebook !
             phonebook.addContact(contact);
         }
         else if(command == "SEARCH")
         {
             phonebook.displayAllContacts();
-            std::cout << "Entrez l'index du contact à afficher : ";
+            std::cout << "Entrez l'index du contact à afficher : " << std::endl;
             std::string input;
             std::cin.ignore();
             std::getline(std::cin, input);
-
+            if(!std::getline(std::cin, input))
+            {
+                std::cout << "Error: Failed to read input" << std::endl;
+                exit(0);
+            }
             bool isNumber = true;
             for (size_t i = 0; i < input.length(); ++i) 
             {
