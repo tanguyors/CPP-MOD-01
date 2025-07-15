@@ -2,6 +2,12 @@
 #include <iostream>
 #include <cstdlib>
 
+bool isOnlySpaces(const std::string str) 
+{
+    return str.find_first_not_of(' ') == std::string::npos;
+}
+//si elle trouve que des espace elle retourne npos on le compare ensuite dans le main pour voir si == true
+
 int main()
 {
     PhoneBook phonebook;
@@ -29,7 +35,7 @@ int main()
                 std::cout << "Error: Failed to read input" << std::endl;
                 exit(0);
             }
-            if (input.empty()) 
+            if (input.empty() || isOnlySpaces(input))
             {
                 std::cout << "First Name is empty, recommencez l'ajout du contact." << std::endl;
                 continue;
@@ -44,9 +50,9 @@ int main()
                 std::cout << "Error: Failed to read input";
                 exit(0);
             }
-            if (input.empty())
+            if (input.empty() || isOnlySpaces(input))
             {
-                std::cout << "Last Name is empty, recommencez l'ajout du contact." << std::endl;
+                std::cout << "First Name is empty, recommencez l'ajout du contact." << std::endl;
                 continue;
             }
             contact.setLastName(input);
@@ -59,9 +65,9 @@ int main()
                 std::cout << "Error: Failed to read input";
                 exit(0);
             }
-            if (input.empty())
+            if (input.empty() || isOnlySpaces(input))
             {
-                std::cout << "Nick Name is empty, recommencez l'ajout du contact." << std::endl;
+                std::cout << "First Name is empty, recommencez l'ajout du contact." << std::endl;
                 continue;
             }
             contact.setNickName(input);
@@ -74,9 +80,9 @@ int main()
                 std::cout << "Error: Failed to read input";
                 exit(0);
             }
-            if (input.empty())
+            if (input.empty() || isOnlySpaces(input))
             {
-                std::cout << "Phone Number is empty, recommencez l'ajout du contact." << std::endl;
+                std::cout << "First Name is empty, recommencez l'ajout du contact." << std::endl;
                 continue;
             }
             contact.setNumber(input);
@@ -89,9 +95,9 @@ int main()
                 std::cout << "Error: Failed to read input";
                 exit(0);
             }
-            if (input.empty())
+            if (input.empty() || isOnlySpaces(input))
             {
-                std::cout << "Darkest Secret is empty, recommencez l'ajout du contact." << std::endl;
+                std::cout << "First Name is empty, recommencez l'ajout du contact." << std::endl;
                 continue;
             }
             contact.setDarkestSecret(input);
@@ -103,9 +109,7 @@ int main()
             phonebook.displayAllContacts();
             std::cout << "Entrez l'index du contact à afficher : " << std::endl;
             std::string input;
-            std::cin.ignore();
-            std::getline(std::cin, input);
-            if(!std::getline(std::cin, input))
+            if (!std::getline(std::cin, input)) 
             {
                 std::cout << "Error: Failed to read input" << std::endl;
                 exit(0);
